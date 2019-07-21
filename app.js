@@ -10,6 +10,7 @@ var cors = require("cors");
 var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/products');
 var propsRouter = require('./routes/props');
+var authRouter = require('./routes/auth');
 
 var app = express();
 
@@ -17,7 +18,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(cors());
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
 app.use('/props', propsRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

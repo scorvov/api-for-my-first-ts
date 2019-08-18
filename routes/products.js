@@ -28,7 +28,7 @@ router.post('/add', function (req, res) {
 router.post('/update', function (req, res) {
     isAuth(req, res, () => {
         const index = products.findIndex(item => item.id === req.body.id);
-        products[index] = req.body;
+        products[index] = {...req.body, dateUp: new Date()};
         res.send();
     });
 });

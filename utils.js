@@ -23,7 +23,7 @@ const getSorting = (order, orderBy) => {
 };
 
 const responsePageData = (data, req, res) => {
-    const {perPage, currentPage, order, orderBy} = req.body;
+    const {perPage="100", currentPage=0, order="desc", orderBy="id"} = req.body;
     const count = data.length;
     const start = perPage * (currentPage);
     const end = start + perPage;
@@ -41,8 +41,7 @@ const responsePageData = (data, req, res) => {
                 ...filterParams,
                 props: items
             }
-        });
-
+        })
 };
 
 const user = {
@@ -55,4 +54,4 @@ const isAuth = (req, res, func) => {
     } else res.status(401).send('Error authorization');
 };
 
-module.exports = {isAuth, responsePageData };
+module.exports = {isAuth, responsePageData};

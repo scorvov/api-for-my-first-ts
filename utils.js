@@ -23,23 +23,24 @@ const getSorting = (order, orderBy) => {
 };
 
 const responsePageData = (data, req, res) => {
-    const {perPage="100", currentPage=0, order="desc", orderBy="id"} = req.body;
+    const {perPage="100", currentPage = 0, order="desc", orderBy="id"} = req.body;
+    console.log(req.baseUrl);
     const count = data.length;
     const start = perPage * (currentPage);
     const end = start + perPage;
-    const items = stableSort(data, getSorting(order, orderBy)).slice(start, end);
+    const items = count ? stableSort(data, getSorting(order, orderBy)).slice(start, end) : [];
     const filterParams = {count, perPage, currentPage, order, orderBy};
-    (data[0].cost) ?
+    (req.baseUrl === '/products') ?
         res.json({
             productsList: {
                 ...filterParams,
-                products: items.map(({id, name, cost, dateUp}) => ({id, name, cost, dateUp}))
+                items: count ? items.map(({id, name, cost, dateUp}) => ({id, name, cost, dateUp})) : items
             }
         })
         : res.json({
             propsList: {
                 ...filterParams,
-                props: items
+                items: items
             }
         })
 };

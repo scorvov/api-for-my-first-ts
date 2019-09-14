@@ -19,7 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 var corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://rent-car-front.herokuapp.com/',
   credentials: true
 };
 

@@ -18,12 +18,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-/*var corsOptions = {
+var corsOptions = {
   origin: 'https://rent-car-front.herokuapp.com/',
   credentials: true
-};*/
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

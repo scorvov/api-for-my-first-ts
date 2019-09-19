@@ -1,14 +1,10 @@
 var express = require('express');
 var router = express.Router();
+const {password, user} = require('../utils');
 
-
-let user = {
-    userId: 'qwerty2301',
-    login: 'Scorpio'
-};
 
 router.post('/', function (req, res) {
-    if(req.body.login === "Scorpio" && req.body.password === "20111990"){
+    if(req.body.login === user.login && req.body.password === password){
         res.cookie('user', user);
         res.json(user);
     } else res.status(401).send('Current login or password does not match');

@@ -45,14 +45,19 @@ const responsePageData = (data, req, res) => {
         })
 };
 
+const login = "Admin";
+const password = "Admin123";
+const userId = 'qwerty2301';
+
 const user = {
-    userId: 'qwerty2301',
-    login: 'Scorpio'
+    userId: userId,
+    login: login
 };
+
 const isAuth = (req, res, func) => {
     if (req.cookies.user && JSON.stringify(req.cookies.user) === JSON.stringify(user)) {
         func();
     } else res.status(401).send('Error authorization');
 };
 
-module.exports = {isAuth, responsePageData};
+module.exports = {isAuth, responsePageData, user, password};

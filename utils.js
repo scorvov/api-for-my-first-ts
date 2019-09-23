@@ -45,13 +45,11 @@ const responsePageData = (data, req, res) => {
         })
 };
 
-const login = "Admin";
 const password = "Admin123";
-const userId = 'qwerty2301';
 
 const user = {
-    userId: userId,
-    login: login
+    userId: "qwerty2301",
+    login: "Admin"
 };
 
 const isAuth = (req, res, func) => {
